@@ -86,7 +86,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   });
   //Exercício extra 7
 
-  it.only("envia o formuário com sucesso usando um comando customizado", () => {
+  it("envia o formuário com sucesso usando um comando customizado", () => {
     cy.fillMandatoryFieldsAndSubmit();
     cy.get(".success").should("be.visible");
   });
