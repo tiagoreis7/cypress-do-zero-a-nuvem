@@ -87,7 +87,18 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   //Exercício extra 7
 
   it.only("envia o formuário com sucesso usando um comando customizado", () => {
-    cy.fillMandatoryFieldsAndSubmit();
+    /* chama o comando customizado "fillMandatoryFieldsAndSubmit()" criado no arquivo commands.js para preencher os campos obrigatórios e submeter o formulário com sucesso (sem erros)*/
+    //primeira opção
+    //cy.fillMandatoryFieldsAndSubmit();
+    //segunda opção
+    const data = {
+      firstName: "Tiago",
+      lastName: "Reis",
+      email: "tiago7@my.com",
+      text: "Teste.",
+    };
+    cy.fillMandatoryFieldsAndSubmit(data);
+
     cy.get(".success").should("be.visible");
   });
 });
