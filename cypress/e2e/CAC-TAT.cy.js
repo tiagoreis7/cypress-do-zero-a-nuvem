@@ -6,7 +6,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   it("verifica o título da aplicação", () => {
     cy.title().should("include", "Central de Atendimento ao Cliente TAT");
   });
-
+  //LIÇÃO 02
   //Exercício extra 1
   it("preenche os campos obrigatórios e enviar o formulário", () => {
     const longText = Cypress._.repeat("abcdefghijklmnopqrstuvwxyz", 10); // criou uma varialvel com texto longo
@@ -86,7 +86,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   });
   //Exercício extra 7
 
-  it.only("envia o formuário com sucesso usando um comando customizado", () => {
+  it("envia o formuário com sucesso usando um comando customizado", () => {
     /* chama o comando customizado "fillMandatoryFieldsAndSubmit()" criado no arquivo commands.js para preencher os campos obrigatórios e submeter o formulário com sucesso (sem erros)*/
     //primeira opção
     //cy.fillMandatoryFieldsAndSubmit();
@@ -100,5 +100,46 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.fillMandatoryFieldsAndSubmit(data);
 
     cy.get(".success").should("be.visible");
+  });
+
+  //Exercício extra 8
+  //usando 'cy.contains()' no lugar de 'cy.get()'
+  it("usando 'cy.contains()' no lugar de 'cy.get()'", () => {
+    cy.get("#firstName").type("Tiago");
+    cy.get("#lastName").type("Reis");
+    cy.get("#email").type("tiago7@my,com");
+    cy.get("#open-text-area").type(
+      "Obrigado pelo ensinamento deste curso de Test."
+    );
+    cy.contains("button", "Enviar").click();
+
+    cy.get(".error").should("be.visible");
+  });
+
+  // LIÇÃO 03
+  // Exercício
+  it("Seleciona um produto (YouTube) por seu texto", () => {
+    cy.get("#product").select("YouTube").should("have.value", "youtube");
+  });
+
+  //Exercício extra 1
+  it("Seleciona um produto (Mentoria) por seu valor (value)", () => {
+    cy.get("#product").select("mentoria").should("have.value", "mentoria");
+  });
+  //Exercício extra 2
+  it("seleciona um produto (Blog) por seu índice", () => {
+    cy.get("#product").select(1).should("have.value", "blog");
+  });
+
+  //LIÇÂO 04
+  //Exercício
+  it('marca o tipo de atendimento "Feedback"', () => {
+    cy.get('input[type="radio"]').check("feedback").should("be.checked"); //checa se foir marcado o 'feedback'
+  });
+  //Exercício extra
+  it.only("marca cada tipo de atendimento", () => {
+    cy.get('input[type="radio"]').each((typeOfService) => {
+      cy.wrap(typeOfService).check().should("be.checked");
+    });
   });
 });
