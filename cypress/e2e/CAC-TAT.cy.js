@@ -45,7 +45,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#lastName").type("Reis");
     cy.get("#email").type("tiago7@my,com");
     cy.get("#open-text-area").type("Teste");
-    cy.get("#phone-checkbox").click();
+    cy.get("#phone-checkbox").check();
     cy.get('button[type="submit"]').click();
 
     cy.get(".error").should("be.visible");
@@ -137,9 +137,41 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get('input[type="radio"]').check("feedback").should("be.checked"); //checa se foir marcado o 'feedback'
   });
   //Exercício extra
-  it.only("marca cada tipo de atendimento", () => {
+  it("marca cada tipo de atendimento", () => {
     cy.get('input[type="radio"]').each((typeOfService) => {
       cy.wrap(typeOfService).check().should("be.checked");
     });
+  });
+  //LIÇÃO 05
+  //Exercício
+  it("marca ambos checkboxes, depois desmarca o último", () => {
+    cy.get('input[type="checkbox"]').check().should("be.checked"); // marca todos os checkboxes
+    cy.get('input[type="checkbox"]').last().uncheck().should("not.be.checked"); // desmarca o último checkbox
+  });
+  //LIÇÃO 06
+  //Exercício
+  it("seleciona um arquivo da pasta fixtures", () => {
+    cy.get("#file-upload")
+      .selectFile("cypress/fixtures/example.json") // seleciona o arquivo example.json da pasta fixtures
+      .should((input) => {
+        expect(input[0].files[0].name).to.equal("example.json"); // verifica se o arquivo foi selecionado corretamente
+      });
+  });
+  //Exercício extra 1
+  it("seleciona um arquivo simulando um drag-and-drop", () => {
+    cy.get("#file-upload")
+      .selectFile("cypress/fixtures/example.json", { action: "drag-drop" }) // seleciona o arquivo example.json da pasta fixtures simulando um drag-and-drop
+      .should((input) => {
+        expect(input[0].files[0].name).to.equal("example.json"); // verifica se o arquivo foi selecionado corretamente
+      });
+  });
+  //Exercício extra 2
+  it("seleciona um arquivo utilizando uma fixture para a qual foi dada um alias", () => {
+    cy.fixture("example.json").as("sampleFile"); // cria um alias para o arquivo example.json da pasta fixtures
+    cy.get("#file-upload")
+      .selectFile("@sampleFile") // seleciona o arquivo utilizando o alias
+      .should((input) => {
+        expect(input[0].files[0].name).to.equal("example.json"); // verifica se o arquivo foi selecionado corretamente
+      });
   });
 });
