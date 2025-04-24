@@ -166,7 +166,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       });
   });
   //Exercício extra 2
-  it("seleciona um arquivo utilizando uma fixture para a qual foi dada um alias", () => {
+  it.only("seleciona um arquivo utilizando uma fixture para a qual foi dada um alias", () => {
     cy.fixture("example.json").as("sampleFile"); // cria um alias para o arquivo example.json da pasta fixtures
     cy.get("#file-upload")
       .selectFile("@sampleFile") // seleciona o arquivo utilizando o alias
