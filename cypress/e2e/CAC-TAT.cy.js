@@ -177,18 +177,18 @@ describe("Central de Atendimento ao Cliente TAT", () => {
 
   //LIÇÃO 07
   //Exercício
-  it.only("verifica que a política de privacidade abre em outra aba sem a necessidade de um clique", () => {
-    cy.get("#privacy a").should("have.attr", "target", "_blank"); // verifica se o link da política de privacidade abre em outra aba
+  it("verifica que a política de privacidade abre em outra aba sem a necessidade de um clique", () => {
+    cy.contains("a", "Política de Privacidade") // pega o link da política de privacidade
+      .should("have.attr", "href", "privacy.html") // verifica se o link da política de privacidade está correto
+      .and("have.attr", "target", "_blank"); // verifica se o link da política de privacidade abre em outra aba
   });
   //Exercício extra 1
   it.only("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
-    cy.get("#privacy a") // pega o link da política de privacidade
+    cy.contains("a", "Política de Privacidade") // pega o link da política de privacidade
       .invoke("removeAttr", "target") // remove o atributo target do link
       .click(); // clica no link
 
-    cy.get("#title").should("be.visible"); // verifica se a página da política de privacidade está visível
+    cy.contains("h1", "CAC TAT - Política de Privacidade").should("be.visible"); // verifica se a página da política de privacidade está visível
   });
   //Exercício extra 2
 });
-
-// teste de sicronização com o git para o linux
