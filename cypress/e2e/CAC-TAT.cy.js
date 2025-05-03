@@ -183,7 +183,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .and("have.attr", "target", "_blank"); // verifica se o link da política de privacidade abre em outra aba
   });
   //Exercício extra 1
-  it.only("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
+  it("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
     cy.contains("a", "Política de Privacidade") // pega o link da política de privacidade
       .invoke("removeAttr", "target") // remove o atributo target do link
       .click(); // clica no link
@@ -191,4 +191,13 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.contains("h1", "CAC TAT - Política de Privacidade").should("be.visible"); // verifica se a página da política de privacidade está visível
   });
   //Exercício extra 2
+  //foi criado separado, com o nome "privacyPolicy.cy.js"
+
+  //LIÇÂO 08
+  //Exercício
+  //Crie um script no arquivo package.json que abre o Cypress Runner simulando um dispositivo com 410 pixels de largura e 860 pixels de altura, criei no package.json um script com o nome "cy:open:mobile": "cypress open --config viewportWidth=410 viewportHeight=860" onde eu consigo chamar no terminal $npm run cy:open:mobile
+  //Exercício extra
+  //Crie um script no arquivo package.json que rode os testes em modo headless, simulando um dispositivo com 410 pixels de largura e 860 pixels de altura, criei no package.json um script com o nome "test:mobile": "cypress run --config viewportWidth=410 viewportHeight=860" onde eu consigo chamar no terminal $npm run test:mobile
+
+  //LIÇÂO 09
 });
