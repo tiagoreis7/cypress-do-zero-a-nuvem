@@ -1,10 +1,10 @@
-name: End-to-end tests
-on: push
+name: End-to-end tests # Nome do workflow que aparecerá no GitHub
+on: push # Executa o workflow em todo push
 jobs:
-  cypress-run:
-    runs-on: ubuntu-22.04
+  cypress-run: # Nome do job
+    runs-on: ubuntu-22.04 # Runner: usa Ubuntu 22.04 para rodar o job
     steps:
-      - name: Checkout
+      - name: Checkout # Etapa 1: Faz o checkout (baixa o código do repositório)
         uses: actions/checkout@v4
-      - name: Cypress run
+      - name: Cypress run # Etapa 2: Roda os testes end-to-end com Cypress
         uses: cypress-io/github-action@v6
