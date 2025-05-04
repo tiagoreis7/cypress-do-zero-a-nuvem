@@ -184,11 +184,11 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   });
   //Exercício extra 1
   it("acessa a página da política de privacidade removendo o target e então clicando no link", () => {
-    cy.contains("a", "Poítica de Privacidade") // pega o link da política de privacidade
+    cy.contains("a", "Política de Privacidade") // pega o link da política de privacidade
       .invoke("removeAttr", "target") // remove o atributo target do link
       .click(); // clica no link
 
-    cy.contains("h1", "AC TAT - Política de Privacidade").should("be.visible"); // verifica se a página da política de privacidade está visível
+    cy.contains("h1", "CAC TAT - Política de Privacidade").should("be.visible"); // verifica se a página da política de privacidade está visível
   });
   //Exercício extra 2
   //foi criado separado, com o nome "privacyPolicy.cy.js"
