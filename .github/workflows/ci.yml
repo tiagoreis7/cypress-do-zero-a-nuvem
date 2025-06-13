@@ -8,3 +8,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress run # Etapa 2: Roda os testes end-to-end com Cypress
         uses: cypress-io/github-action@v6
+        env: # Variáveis de ambiente
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # Chave de gravação do Cypress
+        with:
+          command: npm run test:cloud # Comando para rodar os testes end-to-end

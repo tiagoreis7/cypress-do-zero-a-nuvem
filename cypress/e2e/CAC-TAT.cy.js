@@ -200,4 +200,8 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   //Crie um script no arquivo package.json que rode os testes em modo headless, simulando um dispositivo com 410 pixels de largura e 860 pixels de altura, criei no package.json um script com o nome "test:mobile": "cypress run --config viewportWidth=410 viewportHeight=860" onde eu consigo chamar no terminal $npm run test:mobile
 
   //LIÇÂO 09
+
+  //LIÇÃO 10
+  //Exercício
+  //Integração Contínua (CI) - Criar um workflow no GitHub Actions para rodar os testes do Cypress em modo headless, simulando um dispositivo com 410 pixels de largura e 860 pixels de altura, criei o arquivo .github/workflows/cypress.yml com o seguinte conteúdo:
 });
