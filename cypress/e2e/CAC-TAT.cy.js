@@ -9,6 +9,8 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   //LIÇÃO 02
   //Exercício extra 1
   it("preenche os campos obrigatórios e enviar o formulário", () => {
+    cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
+
     const longText = Cypress._.repeat("abcdefghijklmnopqrstuvwxyz", 10); // criou uma varialvel com texto longo
 
     cy.get("#firstName").type("Tiago"); // preenche o campo de nome
@@ -19,10 +21,15 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get('button[type="submit"]').click(); // pega o seletor css do button, fazendo um click no botão de submit do formulário
 
     cy.get(".success").should("be.visible"); // verifica se a mensagem de sucesso está visível
+
+    cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
+    cy.get(".success").should("not.be.visible"); // verifica se a mensagem de sucesso não está mais visível após 3 segundos
   });
 
   //Exercício extra 2
   it("exibe mensagem de erro ao submeter o formulário com um email com formatação inválida", () => {
+    cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
+
     cy.get("#firstName").type("Tiago");
     cy.get("#lastName").type("Reis");
     cy.get("#email").type("tiago7@my,com");
@@ -30,6 +37,9 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get('button[type="submit"]').click();
 
     cy.get(".error").should("be.visible");
+
+    cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
+    cy.get(".error").should("not.be.visible"); // verifica se a mensagem de erro não está mais visível após 3 segundos
   });
 
   //Exercício extra 3
@@ -41,6 +51,8 @@ describe("Central de Atendimento ao Cliente TAT", () => {
 
   //Exercício extra 4
   it("exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário", () => {
+    cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
+
     cy.get("#firstName").type("Tiago");
     cy.get("#lastName").type("Reis");
     cy.get("#email").type("tiago7@my,com");
@@ -49,6 +61,9 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get('button[type="submit"]').click();
 
     cy.get(".error").should("be.visible");
+
+    cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
+    cy.get(".error").should("not.be.visible"); // verifica se a mensagem de erro não está mais visível após 3 segundos
   });
 
   //Exercício extra 5
@@ -80,9 +95,14 @@ describe("Central de Atendimento ao Cliente TAT", () => {
 
   //Exercício extra 6
   it("exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", () => {
+    cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
+
     cy.get('button[type="submit"]').click();
 
     cy.get(".error").should("be.visible");
+
+    cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
+    cy.get(".error").should("not.be.visible"); // verifica se a mensagem de erro não está mais visível após 3 segundos
   });
   //Exercício extra 7
 
@@ -97,9 +117,14 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       email: "tiago7@my.com",
       text: "Teste.",
     };
+    cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
+
     cy.fillMandatoryFieldsAndSubmit(data);
 
     cy.get(".success").should("be.visible");
+
+    cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
+    cy.get(".success").should("not.be.visible"); // verifica se a mensagem de sucesso não está mais visível após 3 segundos
   });
 
   //Exercício extra 8
