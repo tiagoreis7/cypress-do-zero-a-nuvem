@@ -8,24 +8,26 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   });
   //LIÇÃO 02
   //Exercício extra 1
-  it("preenche os campos obrigatórios e enviar o formulário", () => {
-    cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
+  Cypress._.times(5, () => {
+    // repete o teste 5 vezes
+    it("preenche os campos obrigatórios e enviar o formulário", () => {
+      cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
 
-    const longText = Cypress._.repeat("abcdefghijklmnopqrstuvwxyz", 10); // criou uma varialvel com texto longo
+      const longText = Cypress._.repeat("abcdefghijklmnopqrstuvwxyz", 10); // criou uma varialvel com texto longo
 
-    cy.get("#firstName").type("Tiago"); // preenche o campo de nome
-    cy.get("#lastName").type("Reis"); // preenche o campo de sobrenome
-    cy.get("#email").type("tiago7@my.com"); // preenche o campo de email
-    //cy.get('#phone').type('71981912552') // preenche o campo de telefone
-    cy.get("#open-text-area").type(longText, { delay: 0 }); // preenche o campo de mensagem com a string criada acima, com delay 0 para preencher mais rápido o campo de texto grande (text area)
-    cy.get('button[type="submit"]').click(); // pega o seletor css do button, fazendo um click no botão de submit do formulário
+      cy.get("#firstName").type("Tiago"); // preenche o campo de nome
+      cy.get("#lastName").type("Reis"); // preenche o campo de sobrenome
+      cy.get("#email").type("tiago7@my.com"); // preenche o campo de email
+      //cy.get('#phone').type('71981912552') // preenche o campo de telefone
+      cy.get("#open-text-area").type(longText, { delay: 0 }); // preenche o campo de mensagem com a string criada acima, com delay 0 para preencher mais rápido o campo de texto grande (text area)
+      cy.get('button[type="submit"]').click(); // pega o seletor css do button, fazendo um click no botão de submit do formulário
 
-    cy.get(".success").should("be.visible"); // verifica se a mensagem de sucesso está visível
+      cy.get(".success").should("be.visible"); // verifica se a mensagem de sucesso está visível
 
-    cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
-    cy.get(".success").should("not.be.visible"); // verifica se a mensagem de sucesso não está mais visível após 3 segundos
+      cy.tick(3000); // simula o tempo passando, nesse caso 3 segundos (3000 milisegundos)
+      cy.get(".success").should("not.be.visible"); // verifica se a mensagem de sucesso não está mais visível após 3 segundos
+    });
   });
-
   //Exercício extra 2
   it("exibe mensagem de erro ao submeter o formulário com um email com formatação inválida", () => {
     cy.clock(); // cria um relógio para controlar o tempo, assim podemos usar o comando 'cy.tick()' para simular o tempo passando
@@ -229,4 +231,27 @@ describe("Central de Atendimento ao Cliente TAT", () => {
   //LIÇÃO 10
   //Exercício
   //Integração Contínua (CI) - Criar um workflow no GitHub Actions para rodar os testes do Cypress em modo headless, simulando um dispositivo com 410 pixels de largura e 860 pixels de altura, criei o arquivo .github/workflows/cypress.yml com o seguinte conteúdo:
+
+  //LIÇÃO 12
+  //Exercício extra 2
+  it.only("exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
+    cy.get(".success")
+      .should("not.be.visible")
+      .invoke("show")
+      .should("be.visible")
+      .and("contain", "Mensagem enviada com sucesso.")
+      .invoke("hide")
+      .should("not.be.visible");
+    cy.get(".error")
+      .should("not.be.visible")
+      .invoke("show")
+      .should("be.visible")
+      .and("contain", "Valide os campos obrigatórios!")
+      .invoke("hide")
+      .should("not.be.visible");
+  });
+  //Exercício extra 3
+  it('preenche o campo da área de texto usando o comando invoke', () => {
+    
+  });
 });
