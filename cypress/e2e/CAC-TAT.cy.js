@@ -136,7 +136,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
     cy.get("#lastName").type("Reis");
     cy.get("#email").type("tiago7@my,com");
     cy.get("#open-text-area").type(
-      "Obrigado pelo ensinamento deste curso de Test."
+      "Obrigado pelo ensinamento deste curso de Test.",
     );
     cy.contains("button", "Enviar").click();
 
@@ -234,7 +234,7 @@ describe("Central de Atendimento ao Cliente TAT", () => {
 
   //LIÇÃO 12
   //Exercício extra 2
-  it.only("exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
+  it("exibe e oculta as mensagens de sucesso e erro usando .invoke()", () => {
     cy.get(".success")
       .should("not.be.visible")
       .invoke("show")
@@ -251,7 +251,5 @@ describe("Central de Atendimento ao Cliente TAT", () => {
       .should("not.be.visible");
   });
   //Exercício extra 3
-  it('preenche o campo da área de texto usando o comando invoke', () => {
-    
-  });
+  it("preenche o campo da área de texto usando o comando invoke", () => {});
 });

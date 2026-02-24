@@ -6,4 +6,5 @@ module.exports = defineConfig({
   viewportWidth: 1280,
   e2e: {},
   projectId: "x2n6az",
+  video: true,
 });
